@@ -1,0 +1,53 @@
+using System;
+using System.Linq;
+
+namespace ConsoleApp3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите название фигуры:");
+            string ans = Console.ReadLine();
+
+            switch (ans){
+                case "Круг":
+                    Console.WriteLine("Введите радиус круга:");
+                    double R = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Площадь: " + Math.PI * Math.Pow(R, 2));
+                    break;
+
+                case "Треугольник":
+                    Console.WriteLine("Введите стороны:");
+                    double str1 = Convert.ToDouble(Console.ReadLine());
+                    double str2 = Convert.ToDouble(Console.ReadLine());
+                    double str3 = Convert.ToDouble(Console.ReadLine());
+                    double[] mas = {str1, str2, str3};
+                    double p = (str1 + str2 + str3) / 2;
+                    Console.WriteLine("Площадь треугольника: " + (Math.Sqrt(p*(p-str1)*(p - str2)*(p-str3))));
+                    double temp;
+                    for (int i = 0; i < mas.Length - 1; i++)
+                    {
+                        for (int j = i + 1; j < mas.Length; j++)
+                        {
+                            if (mas[i] > mas[j])
+                            {
+                                temp = mas[i];
+                                mas[i] = mas[j];
+                                mas[j] = temp;
+                            }
+                        }
+                    }
+                    if(Math.Pow(mas[2], 2) == Math.Pow(mas[1], 2) + Math.Pow(mas[0], 2))
+                    {
+                        Console.WriteLine("Треугольник является прямоугольным");
+                    }
+                    else Console.WriteLine("Треугольник не прямоугольный");
+
+                    break;
+                }
+
+            Console.ReadKey();
+        }
+    }
+}
